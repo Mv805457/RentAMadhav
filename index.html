@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>⚠ WARNING — Rent-A-Madhav</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+  /* ✔ FIXED background syntax */
+  background-image: url('assets/images/image copy 6.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color:white;
+  font-family:Inter;
+  text-align:center;
+  padding: 40px;
+  animation: pulseBG 3s infinite alternate;
+}
+
+/* ⭐ MAKE ALL TEXT NEON RED */
+body, p, strong, span, h1, h2, h3, .text-xl, .text-lg, .font-semibold {
+  color: #ff2b2b !important;
+  text-shadow: 0 0 8px rgba(255, 20, 20, 0.9);
+}
+
+@keyframes pulseBG {
+  0% { filter: brightness(0.8); }
+  100% { filter: brightness(1.1); }
+}
+
+.warning-box{
+  max-width:900px;
+  margin:auto;
+  padding:40px;
+  background:rgba(255,0,0,0.15);
+  border:3px solid rgba(255,0,0,0.5);
+  border-radius:20px;
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 30px rgba(255,0,0,0.4);
+  animation: shake 2.5s infinite ease-in-out alternate;
+}
+
+@keyframes shake {
+  0% { transform:translateY(0px); }
+  100% { transform:translateY(-6px); }
+}
+
+.glitch{
+  font-size:3rem;
+  font-weight:900;
+  color:#ff4444;
+  text-shadow:2px 2px #000;
+  animation: glitch 1.2s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow:2px 2px #000, -2px -2px #ff0000; }
+  50% { text-shadow:-2px -2px #000, 2px 2px #ff0000; }
+  100% { text-shadow:2px 2px #000, -2px -2px #ff0000; }
+}
+
+.btn-enter{
+  background:#ff3030;
+  padding:14px 26px;
+  border-radius:10px;
+  margin-top:20px;
+  color:black;
+  font-weight:800;
+  font-size:18px;
+  box-shadow:0 0 15px rgba(255,0,0,0.6);
+  transition:.3s;
+}
+.btn-enter:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 25px rgba(255,0,0,1);
+}
+</style>
+
+</head>
+<body>
+
+<div class="warning-box">
+
+  <div class="glitch mb-4">⚠ WARNING ⚠</div>
+
+  <p class="text-xl mb-4 font-semibold">
+    BEFORE YOU GO IN… YOU ARE ABOUT TO HAVE A **GREAT TIME**.
+  </p>
+
+  <p class="text-lg opacity-90 mt-4">
+    You will witness <strong>pure chaos, creativity, stupidity, genius, autism-coded behaviour,</strong>  
+    and things Madhav probably did without thinking.
+  </p>
+
+  <p class="text-lg opacity-90 mt-4">
+    Everything here is done **under the law (mostly)**  
+    and there will be **SWEAR WORDS**, violent levels of chaos, and emotional damage.
+  </p>
+
+  <p class="text-lg opacity-90 mt-4">
+    If you have ANY problem with Madhav,  
+    kindly call:  
+    <span class="font-bold text-red-400 text-2xl block mt-2">96112 18298</span>
+    And come to <strong>Malleshwaram</strong> so he can pop you there respectfully.
+  </p>
+
+  <p class="text-lg mt-4 italic opacity-75">
+    Continue at your own risk.  
+    Madhav is not responsible for confusion, laughter, delusion, or brain damage.
+  </p>
+
+  <a href="home.html" class="btn-enter inline-block mt-8">ENTER IF YOU DARE →</a>
+
+</div>
+
+</body>
+</html>

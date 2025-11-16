@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madhav — Resume Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{
+      background: radial-gradient(circle at center, #001a0f 0%, #000703 100%);
+      color:#d6ffe2;
+      font-family: Inter, system-ui;
+      overflow-x:hidden;
+    }
+    .glow{
+      box-shadow:0 0 22px rgba(0,255,140,0.35);
+      border:1px solid rgba(0,255,140,0.25);
+    }
+    .circle-wrapper{
+      position:relative;
+      width:500px;
+      height:500px;
+      margin:auto;
+      margin-top:60px;
+    }
+    .circle{
+      position:absolute;
+      top:50%;left:50%;
+      width:420px;height:420px;
+      border-radius:50%;
+      border:1px solid rgba(0,255,120,0.25);
+      transform:translate(-50%,-50%);
+    }
+    .node{
+      position:absolute;
+      width:70px;height:70px;
+      border-radius:50%;
+      background:rgba(0,255,140,0.15);
+      border:2px solid rgba(0,255,140,0.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      text-align:center;
+      color:#afffd1;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .node:hover{
+      background:rgba(0,255,160,0.3);
+      transform:scale(1.1);
+    }
+    .card{
+      width:350px;
+      padding:20px;
+      background:rgba(0,255,140,0.06);
+      border:1px solid rgba(0,255,160,0.25);
+      border-radius:14px;
+      backdrop-filter:blur(8px);
+      position:fixed;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%) scale(0.8);
+      opacity:0;
+      transition:.4s;
+    }
+    .card.active{
+      opacity:1;
+      transform:translate(-50%,-50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-center mt-10">
+    <h1 class="text-4xl font-extrabold text-green-300 drop-shadow">Madhav Vinod — Resume</h1>
+    <p class="opacity-80 mt-2 text-green-200">A chaotic, creative, multi-skill engine running on biriyani and code.</p>
+    <div class="mt-6">
+      <a href="home.html" class="text-green-300 opacity-70 hover:opacity-100">← Back</a>
+    </div>
+  </div>
+
+  <div class="circle-wrapper">
+    <div class="circle"></div>
+
+    <!-- PROJECT NODES -->
+    <div class="node" style="top:0%; left:50%; transform:translate(-50%,0);" data-target="p1">Tax<br>Calculator</div>
+    <div class="node" style="top:20%; left:90%; transform:translate(-50%,-50%);" data-target="p2">Expense<br>Tracker</div>
+    <div class="node" style="top:50%; left:100%; transform:translate(-50%,-50%);" data-target="p3">MERN<br>Blog App</div>
+    <div class="node" style="top:80%; left:90%; transform:translate(-50%,-50%);" data-target="p4">Messaging<br>App (ChaCha20)</div>
+    <div class="node" style="top:100%; left:50%; transform:translate(-50%,-50%);" data-target="p5">Rope<br>Editor</div>
+    <div class="node" style="top:80%; left:10%; transform:translate(-50%,-50%);" data-target="p6">Filters<br>(cv2)</div>
+    <div class="node" style="top:50%; left:0%; transform:translate(-50%,-50%);" data-target="p7">120+<br>LeetCode</div>
+    <div class="node" style="top:20%; left:10%; transform:translate(-50%,-50%);" data-target="p8">Rent-A-<br>Madhav</div>
+  </div>
+
+  <!-- PROJECT CARDS -->
+  <div id="p1" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">C WinAPI Tax Calculator</h3>
+    <p class="text-green-100 opacity-90 text-sm">A desktop GUI built in C using WinAPI. Reads editable CSV tax slabs for India/UK/USA. Features new/open CSV workflow.</p>
+  </div>
+
+  <div id="p2" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">Expense Tracker (C GUI)</h3>
+    <p class="text-green-100 opacity-90 text-sm">Allows users to log taxable expenses & daily/monthly records. Generates Excel‑compatible CSV templates.</p>
+  </div>
+
+  <div id="p3" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">MERN Blog App</h3>
+    <p class="text-green-100 opacity-90 text-sm">Full‑stack blog with React, Express, MongoDB, JWT auth, bcrypt security, and dynamic routing.</p>
+  </div>
+
+  <div id="p4" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">Messaging App — ChaCha20 Encryption</h3>
+    <p class="text-green-100 opacity-90 text-sm">Built a secure messaging prototype using ChaCha20 symmetric encryption. Features ephemeral messages, secure key exchange (X25519), and minimal-latency delivery.</p>
+  </div>
+
+  <div id="p5" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">Rope Text Editor</h3>
+    <p class="text-green-100 opacity-90 text-sm">High‑performance modal text editor using an AVL‑balanced rope structure for O(log n) insert/delete operations.</p>
+  </div>
+
+  <div id="p6" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">Image Filters — OpenCV (cv2)</h3>
+    <p class="text-green-100 opacity-90 text-sm">Implemented multiple image filters and pipelines using OpenCV (cv2): edge detection, stylization, color transforms, and real‑time webcam filters.</p>
+  </div>
+
+  <div id="p7" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">120+ LeetCode Solutions</h3>
+    <p class="text-green-100 opacity-90 text-sm">Solved and documented 120+ LeetCode problems across arrays, trees, graphs, dynamic programming, and system design patterns. Includes optimized code and explanations.</p>
+  </div>
+
+  <div id="p8" class="card">
+    <h3 class="text-green-300 font-bold text-xl mb-2">Rent-A-Madhav (Website)</h3>
+    <p class="text-green-100 opacity-90 text-sm">A full neon multi‑page futuristic portfolio with AI chatbot, model selector, and animated resume wheel.</p>
+  </div>
+
+  <script>
+    document.querySelectorAll('.node').forEach(n=>{
+      n.addEventListener('click',()=>{
+        document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+        const id = n.getAttribute('data-target');
+        document.getElementById(id).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

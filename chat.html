@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Talk to Madhav — Chat Pod</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--purple:164,80,255;--soft:255,150,220;--roast:255,80,80;--hyper:200,120,255;--coder:160,200,255}
+    body{background:linear-gradient(180deg,#050007 0%,#040014 100%);color:#e9ddff;font-family:Inter,system-ui,Arial;min-height:100vh}
+    .pod{max-width:900px;margin:40px auto;padding:28px;background:linear-gradient(180deg,rgba(30,5,45,0.45),rgba(10,3,20,0.55));border-radius:22px;border:1px solid rgba(var(--purple),0.12);box-shadow:0 20px 70px rgba(80,20,120,0.18);backdrop-filter:blur(6px)}
+    .mode-pill{padding:8px 16px;border-radius:9999px;font-size:14px;cursor:pointer;border:1px solid rgba(255,255,255,0.08);transition:.25s}
+    .mode-pill.active{background:rgba(var(--purple),0.3);box-shadow:0 0 18px rgba(var(--purple),0.4)}
+    /* avatar */
+    .avatar-sil{width:72px;height:72px;border-radius:9999px;background:conic-gradient(from 180deg at 50% 50%,rgba(120,80,255,0.25),rgba(200,120,255,0.08));display:flex;align-items:center;justify-content:center;border:2px solid rgba(var(--purple),0.18);}
+    .avatar-sil svg{width:44px;height:44px;opacity:.95;filter:drop-shadow(0 6px 18px rgba(150,60,255,0.12))}
+    .chat-window{height:520px;overflow:auto;padding:18px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+    .msg{max-width:78%;padding:12px 14px;border-radius:12px;margin-bottom:12px}
+    .msg.user{margin-left:auto;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#0b0020}
+    .msg.ai{background:rgba(var(--purple),0.14);border:1px solid rgba(var(--purple),0.25)}
+    .typing .dot{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 1s infinite;opacity:.5}
+    .dot:nth-child(2){animation-delay:.12s}.dot:nth-child(3){animation-delay:.24s}
+    @keyframes blink{0%{transform:translateY(0);opacity:.3}50%{transform:translateY(-6px);opacity:1}100%{transform:translateY(0);opacity:.3}}
+    .input-box{display:flex;gap:8px;padding:12px;border-radius:12px;margin-top:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)}
+    .input-box input{flex:1;background:transparent;border:none;outline:none;color:#f5ebff;padding:8px;font-size:16px}
+    .send-btn{background:linear-gradient(90deg,rgba(var(--purple),1),rgba(var(--purple),0.85));padding:10px 20px;border-radius:10px;color:black;font-weight:700}
+  </style>
+</head>
+<body>
+
+  <div class="pod">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="avatar-sil"><svg viewBox="0 0 24 24" fill="none"><path d="M12 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4z" stroke="#fff" stroke-width="1.2"/><path d="M4 20c0-2.2 3.6-4 8-4s8 1.8 8 4" stroke="#fff" stroke-width="1.2"/></svg></div>
+        <div>
+          <div class="text-lg font-bold">Madhav — Chat Pod</div>
+          <div class="text-sm opacity-60">Choose a Madhav Mode</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode Switcher -->
+    <div class="flex flex-wrap gap-3 mt-6">
+      <div class="mode-pill active" data-mode="chill">Chill</div>
+      <div class="mode-pill" data-mode="hyper">Hyper</div>
+      <div class="mode-pill" data-mode="roast">Roast</div>
+      <div class="mode-pill" data-mode="soft">Soft</div>
+      <div class="mode-pill" data-mode="coder">Coder</div>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="mt-6 chat-window" id="chatWindow">
+      <div class="msg ai"><strong>Madhav:</strong><div class="mt-1">Ayyyy I'm loaded da. Pick my mood and talk to me 👀</div></div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-box mt-3">
+      <input id="userInput" placeholder="Talk to Madhav..." />
+      <button class="send-btn" id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const modes = {
+      chill: "You are Chill Madhav. Relaxed, soft chaos, friendly hype, minimal roasting.",
+      hyper: "You are Hyper Madhav. EVERYTHING is hype, stretched words, chaotic energy, dramatic reactions.",
+      roast: "You are Roast Madhav. Affectionate insults, playful bullying, still caring deep down.",
+      soft: "You are Soft Madhav. Emotional, comforting, warm chaos, gentle replies.",
+      coder: "You are Coder Madhav. Chaotic but smart coding help, half-confident explanations, slang while being helpful."
+    };
+
+    let currentMode = "chill";
+
+    document.querySelectorAll('.mode-pill').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.mode-pill').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = btn.dataset.mode;
+      });
+    });
+
+    const chatWindow = document.getElementById('chatWindow');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function appendMessage(html,who='ai'){
+      const d=document.createElement('div');
+      d.className='msg '+(who==='user'?'user':'ai');
+      d.innerHTML=html;
+      chatWindow.appendChild(d);
+      chatWindow.scrollTop=chatWindow.scrollHeight;
+    }
+
+    function showTyping(){
+      const el=document.createElement('div'); el.className='msg ai typing';
+      el.innerHTML='<div class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+      chatWindow.appendChild(el); chatWindow.scrollTop=chatWindow.scrollHeight; return el;
+    }
+
+    // mock response using your style
+    function madhavReply(text){
+      const m=currentMode;
+      if(m==='hyper') return `GOOOOOOOO daaa ${text}? ur mad crazy 🤣🔥 what is thiss `;
+      if(m==='roast') return `ayyy fucker why you like this da 💀 but ok listen: ${text}`;
+      if(m==='soft') return `ayyyy da come here its okay okay im here for u always ❤️`;
+      if(m==='coder') return `see da i THINK the error is here only 💀 try fixing it if not ill do and send`; 
+      return `ayyyy chill da ${text} okay?`; // chill mode
+    }
+
+    async function send(){
+      const t=userInput.value.trim(); if(!t) return;
+      appendMessage(`<strong>You:</strong> ${t}`,'user'); userInput.value='';
+      const typing=showTyping(); await new Promise(r=>setTimeout(r,700));
+      typing.remove();
+      appendMessage(`<strong>Madhav (${currentMode}):</strong> ${madhavReply(t)}`,'ai');
+    }
+
+    sendBtn.addEventListener('click',send);
+    userInput.addEventListener('keydown',e=>{if(e.key==='Enter') send();});
+  </script>
+
+</body>
+</html>
