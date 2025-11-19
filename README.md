@@ -90,8 +90,3 @@ Contains:
 - Animated warning page  
 - Swiper slider  
 - Resume showcase  
-
----
-
-## 📁 Folder Structure
-
