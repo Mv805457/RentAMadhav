@@ -3,6 +3,8 @@
 Rent-A-Madhav is a fully interactive, multi-page, neon-themed website that showcases different “models” of Madhav — each representing a humorous, exaggerated version of myself with unique abilities, quirks, and chaotic energy.
 
 The project blends UI design, sci-fi aesthetics, animations, and personality-driven branding into one fun experience.
+THE LINK FOR THE LIVE SITE IS
+https://singular-clafoutis-8cf2b7.netlify.app/
 
 ---
 
